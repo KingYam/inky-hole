@@ -17,7 +17,7 @@ draw = ImageDraw.Draw(img)
 # get api data
 
 try:
-  f = urllib2.urlopen('http://pi.hole/admin/api.php')
+  f = urllib2.urlopen('http://192.168.1.27/admin/api.php')
   json_string = f.read()
   parsed_json = json.loads(json_string)
   adsblocked = parsed_json['ads_blocked_today']
@@ -29,13 +29,19 @@ except:
   ratio = '?'
 
 font = ImageFont.truetype(FredokaOne, 32)
+font_header = ImageFont.truetype(FredokaOne, 16)
 
 inky_display = InkyPHAT("red")
 inky_display.set_border(inky_display.WHITE)
 
-draw.text((20,20), str(adsblocked), inky_display.BLACK, font)
-draw.text((20,50), str("%.1f" % round(ratioblocked,2)) + "%", inky_display.BLACK, font)
+draw.text((20,5), str(adsblocked), inky_display.RED, font)
+draw.text((20, 35), str("Ads Blocked"), inky_display.BLACK, font_header)
+draw.text((20,50), str("%.1f" % round(ratioblocked,2)) + "%", inky_display.RED, font)
+draw.text((20,80), str("of all queries"), inky_display.BLACK, font_header)
 
 inky_display.set_image(img)
+
+inky_display.h_flip = True
+inky_display.v_flip = True
 
 inky_display.show()

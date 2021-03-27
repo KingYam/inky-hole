@@ -1,5 +1,7 @@
 # Inky Hole
 
+**I've edited this to work on my network, and also added some text labels.**
+
 Display the **number of blocked requests, and filtered traffic**, from [Pi-Hole](https://pi-hole.net), on [Pimoroni's Inky-Phat](https://github.com/pimoroni/inky-phat/issues).
 
 <img src='https://raw.githubusercontent.com/neauoire/inky-hole/master/PREVIEW.jpg?v=1' width="600"/>
