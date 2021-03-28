@@ -4,7 +4,7 @@ I've edited this to work on my network, and also added some text labels.
 
 If you get an error trying to run main.py due to `ratioblocked` change the URL on line 20 to the IP address of your Pi.
 
-<img src='https://raw.githubusercontent.com/neauoire/inky-hole/master/PREVIEW2.jpg?v=1' width="600"/>
+<img src='https://raw.githubusercontent.com/kingyam/inky-hole/master/PREVIEW2.jpg?v=1' width="600"/>
 
 
 ### See below for original README from neauoire: ###
