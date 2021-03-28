@@ -2,6 +2,8 @@
 
 I've edited this to work on my network, and also added some text labels.
 
+I followed the [guide from LTT](https://linustechtips.com/topic/1094810-pi-hole-setup-tutorial/) to setup my pihole, and the forked repo to set up the Inky pHat screen.
+
 If you get an error trying to run main.py due to `ratioblocked` change the URL on line 20 to the IP address of your Pi.
 
 <img src='https://raw.githubusercontent.com/kingyam/inky-hole/master/PREVIEW2.jpg?v=1' width="600"/>
