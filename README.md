@@ -8,6 +8,7 @@ If you get an error trying to run main.py due to `ratioblocked` change the URL o
 
 
 ### See below for original README from neauoire: ###
+---
 
 Display the **number of blocked requests, and filtered traffic**, from [Pi-Hole](https://pi-hole.net), on [Pimoroni's Inky-Phat](https://github.com/pimoroni/inky-phat/issues).
 
