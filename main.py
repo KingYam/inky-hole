@@ -41,7 +41,7 @@ draw.text((20,80), str("of all queries"), inky_display.BLACK, font_header)
 
 inky_display.set_image(img)
 
-inky_display.h_flip = True
-inky_display.v_flip = True
+# inky_display.h_flip = True
+# inky_display.v_flip = True
 
 inky_display.show()
