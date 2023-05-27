@@ -17,7 +17,7 @@ draw = ImageDraw.Draw(img)
 # get api data
 
 try:
-  f = urllib2.urlopen('http://192.168.1.27/admin/api.php')
+  f = urllib2.urlopen('http://192.168.0.140/admin/api.php')
   json_string = f.read()
   parsed_json = json.loads(json_string)
   adsblocked = parsed_json['ads_blocked_today']
