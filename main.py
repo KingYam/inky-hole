@@ -1,7 +1,8 @@
 import os
 import json
-import urllib3
 from sys import exit
+import requests
+from dotenv import load_dotenv
 
 from inky import InkyPHAT
 from PIL import Image, ImageFont, ImageDraw
@@ -16,25 +17,30 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 img = Image.open("./logo.png")
 draw = ImageDraw.Draw(img)
 
-# get api data
+# Get app password from .env (new for V6, no more api key)
+load_dotenv()
+env_password = os.getenv("PASSWORD")
 
-http = urllib3.PoolManager()
+# Setup new V6 api URLs and pass app password for auth
+auth_url = 'http://192.168.50.140/api/auth'
+auth_data = { 'password': env_password }
+stats_url = 'http://192.168.50.140/api/stats/summary'
 
-# CHANGE THIS to your URL for your PiHole, and replace <TOKEN HERE> with your API token
-url = 'http://192.168.0.140/admin/api.php?summary&auth=<TOKEN HERE>'
+# Make requests, use sid in response from auth, pass as header for stats get request 
+session = requests.Session()
+r1 = session.post(auth_url, json=auth_data)
+auth_json = r1.json()
+sid = auth_json['session']['sid']
+r2 = session.get(stats_url, headers={'sid': sid})
 
-try:
-  r = http.request('GET', url)
-  if r.status >= 200 or r.status <= 299:
-    exit("http request is unsuccessful")
-except:
-  adsblocked = '?'
-  ratioblocked = '?'
+# Parse JSON returned from get request above
+parsed_json = r2.json()
+adsblocked = parsed_json['queries']['blocked']
+ratioblocked = parsed_json['queries']['percent_blocked']
 
-parsed_json = json.loads(r.data)
-adsblocked = parsed_json['ads_blocked_today']
-ratioblocked = parsed_json['ads_percentage_today']
+session.close()
 
+# Render on hat
 font = ImageFont.truetype(FredokaOne, 32)
 font_header = ImageFont.truetype(FredokaOne, 16)
 
@@ -52,8 +58,8 @@ else:
 draw.text((20,80), str("of all queries"), inky_display.BLACK, font_header)
 
 # For flipping display if mounted
-# inky_display.h_flip = True
-# inky_display.v_flip = True
+inky_display.h_flip = True
+inky_display.v_flip = True
 
 inky_display.set_image(img)
 
