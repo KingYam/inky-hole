@@ -1,5 +1,9 @@
 # Inky Hole
 
+---
+Updated to comply with new API setup for Pihole V6
+---
+
 I've edited this to work on my network, and also added some text labels.
 
 I followed the [guide from LTT](https://linustechtips.com/topic/1094810-pi-hole-setup-tutorial/) to setup my pihole, and the forked repo to set up the Inky pHat screen.
